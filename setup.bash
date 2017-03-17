@@ -23,7 +23,7 @@ echo "Editing git config to enable signing..."
 git config --global user.signingkey $signingkey
 git config --global commit.gpgsign true
 
-echo "Adding commit alias to always sign commits..."
+echo "Adding commit -S alias to always sign commits..."
 git config --global alias.commit "commit -S"
 
 # I've already done this; if someone else is using this they'll need this code.
@@ -39,7 +39,6 @@ curl -LOk "https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.05
 unzip "1.050R-it.zip"
 open "source-code-pro-2.030R-ro-1.050R-it/OTF/*"
 
-
 echo "Creating temporary setup-files directory..."
 mkdir -p "$HOME/Desktop/setup-files"
 cd "$HOME/Desktop/setup-files"
@@ -47,9 +46,11 @@ cd "$HOME/Desktop/setup-files"
 echo "Preparing to install oh-my-zsh, you'll need to enter your user password."
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+echo "Opening Unsplash page with a search for 'parrot' so you can find a desktop background."
+open "https://unsplash.com/search/parrot"
+
 echo "Installing your zsh config from gist..."
 curl "https://gist.githubusercontent.com/ErikBoesen/c5d3d575c8f1b592b473f9b128ef3d7c/raw/3809cc153f746d1c57e751946ff847e7e68e5f3e/.zshrc" > "$HOME/.zshrc"
-
 
 echo "Installing erkbsn zsh theme..."
 curl "https://raw.githubusercontent.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme" > "$HOME/.oh-my-zsh/themes/erkbsn.zsh-theme"
@@ -57,7 +58,15 @@ curl "https://raw.githubusercontent.com/ErikBoesen/erkbsn/master/erkbsn.zsh-them
 mkdir -p "$HOME/.ssh"
 curl "https://gist.githubusercontent.com/ErikBoesen/3e796aa1772f7c99fcdd54e8d12ae188/raw/5db29319a54622068533669050a12470be75f09a/ssh%2520config" > "$HOME/.ssh/config"
 
-echo "Done with configuration! Beginning app installs."
+echo "Done with configuration! Beginning independent installs."
+
+echo "Installing golang..."
+brew install golang
+mkdir -p /usr/local/go
+export GOPATH=/usr/local/go
+
+echo "Installing common lisp..."
+brew install clisp
 
 echo "Installing Atom..."
 curl -O "https://atom.io/download/mac"
@@ -113,10 +122,27 @@ cp ~/Google\ Drive/Fun/com.apple.Terminal.plist ~/Library/Preferences/com.apple.
 echo "Cloning ErikBoesen/bin..."
 git clone https://github.com/ErikBoesen/bin ~/bin
 
-read -p "Done! Do you want to remove the ~/Desktop/setup-files directory? (y/n, lowercase)" remove
-if [ remove == "y" ]; then
+echo "Installing drv, shrt, trs, frc (command line tools)..."
+git clone https://github.com/ErikBoesen/drv
+git clone https://github.com/ErikBoesen/shrt
+git clone https://github.com/ErikBoesen/trs
+git clone https://github.com/ErikBoesen/frc
+cp drv/drv.py /usr/local/bin/drv
+cp shrt/shrt.py /usr/local/bin/shrt
+cp trs/trs.bash /usr/local/bin/trs
+go build frc/frc.go
+cp frc/frc /usr/local/bin/frc
+
+echo "Last step: running brew upgrade to upgrade Python3 and everything else. Will probably take a bit."
+brew upgrade
+
+read -p "Done! Remove ~/Desktop/setup-files directory? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
     rm -rf "$HOME/Desktop/setup-files"
 fi
+
+echo "Remember to remove toolbar items and FIX SPACES SETTINGS!"
 
 
 # TODO: remove toolbar items, fix spaces settings
