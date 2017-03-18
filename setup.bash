@@ -50,15 +50,19 @@ echo "Opening Unsplash page with a search for 'parrot' so you can find a desktop
 open "https://unsplash.com/search/parrot"
 
 echo "Installing your zsh config from gist..."
-curl "https://gist.githubusercontent.com/ErikBoesen/c5d3d575c8f1b592b473f9b128ef3d7c/raw/3809cc153f746d1c57e751946ff847e7e68e5f3e/.zshrc" > "$HOME/.zshrc"
+curl "https://gist.github.com/ErikBoesen/c5d3d575c8f1b592b473f9b128ef3d7c/raw/" > "$HOME/.zshrc"
 
 echo "Installing erkbsn zsh theme..."
 curl "https://raw.githubusercontent.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme" > "$HOME/.oh-my-zsh/themes/erkbsn.zsh-theme"
 
 mkdir -p "$HOME/.ssh"
-curl "https://gist.githubusercontent.com/ErikBoesen/3e796aa1772f7c99fcdd54e8d12ae188/raw/5db29319a54622068533669050a12470be75f09a/ssh%2520config" > "$HOME/.ssh/config"
+curl "https://gist.github.com/ErikBoesen/3e796aa1772f7c99fcdd54e8d12ae188/raw/" > "$HOME/.ssh/config"
 
 echo "Done with configuration! Beginning independent installs."
+
+echo "Opening GIMP download page..."
+# TODO: Auto-download
+open "https://www.gimp.org/downloads/"
 
 echo "Installing golang..."
 brew install golang
@@ -74,10 +78,8 @@ unzip "atom-mac.zip"
 mv "Atom.app" "$HOME/Documents/Atom.app"
 open "$HOME/Documents/Atom.app"
 
-# TODO: Auto-install atom plugins
-for $package in "atom-beautify" "linter" "linter-pylama" "merge-conflicts"; do
-    apm install $package
-done
+echo "Installing atom packages..."
+apm install atom-beautify linter linter-pylama merge-conflicts language-common-lisp
 
 echo "Installing Google Chrome..."
 curl -O "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg"
