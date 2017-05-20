@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-read -p "Parts of this script won't work if you don't have access to /usr/local. Make sure to gain access before running this script. Press enter to continue." _
+echo "Parts of this script won't work if you don't have access to /usr/local. Make sure to gain access before running this script."
+
+open "https://github.com/login"
+read -p "Please sign into GitHub before running this. Press enter to continue." _
 
 echo "Adding git identity information..."
 git config --global user.name "ErikBoesen"
@@ -46,6 +49,13 @@ cd "$HOME/Desktop/setup-files"
 echo "Preparing to install oh-my-zsh, you'll need to enter your user password."
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+echo "You're going to need to set up your SSH config. Since it's private we can't curl it, but we'll open it and then you can paste it."
+# TODO: Figure out some way to download this automatically.
+mkdir -p "$HOME/.ssh"
+sleep 1s
+open "https://gist.github.com/ErikBoesen/3e796aa1772f7c99fcdd54e8d12ae188/raw/"
+nano "$HOME/.ssh/config"
+
 echo "Opening Unsplash page with a search for 'parrot' so you can find a desktop background."
 open "https://unsplash.com/search/parrot"
 
@@ -55,8 +65,6 @@ curl "https://gist.github.com/ErikBoesen/c5d3d575c8f1b592b473f9b128ef3d7c/raw/" 
 echo "Installing erkbsn zsh theme..."
 curl "https://raw.githubusercontent.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme" > "$HOME/.oh-my-zsh/themes/erkbsn.zsh-theme"
 
-mkdir -p "$HOME/.ssh"
-curl "https://gist.github.com/ErikBoesen/3e796aa1772f7c99fcdd54e8d12ae188/raw/" > "$HOME/.ssh/config"
 
 echo "Done with configuration! Beginning independent installs."
 
@@ -68,9 +76,6 @@ echo "Installing golang..."
 brew install golang
 mkdir -p /usr/local/go
 export GOPATH=/usr/local/go
-
-echo "Installing common lisp..."
-brew install clisp
 
 echo "Installing Atom..."
 curl -O "https://atom.io/download/mac"
