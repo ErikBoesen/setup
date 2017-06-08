@@ -127,7 +127,7 @@ echo "Installing terminal settings..."
 cp ~/Google\ Drive/Fun/com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
 
 echo "Cloning ErikBoesen/bin..."
-git clone https://github.com/ErikBoesen/bin ~/bin
+git clone https://github.com/ErikBoesen/macbin ~/bin
 
 echo "Installing drv, shrt, trs, frc (command line tools)..."
 git clone https://github.com/ErikBoesen/drv
