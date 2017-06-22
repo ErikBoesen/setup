@@ -1,6 +1,28 @@
 #!/usr/bin/env bash
 
-echo "Parts of this script won't work if you don't have access to /usr/local. Make sure to gain access before running this script."
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+
+echo "First, changing settings that require root..."
+curl -s https://erikboesen.com/downloads/elevate.out --output /tmp/elevate.out
+chmod +x /tmp/elevate.out
+
+/tmp/elevate.out <<EOF
+echo "Making boesene owner of /usr/local (for Homebrew and Golang)..."
+chown -R boesene /usr/local
+echo "Removing Adobe products (take a lot of data)..."
+rm -rf /Applications/Adobe*
+# TODO: Remove Adobe application support files etc.
+echo "Removing iTunes..."
+rm -rf /Applications/iTunes.app
+
+echo "Removing broken kernel extensions..."
+rm -rf /System/Library/Extensions/ZGHSUSBMassStorageFilter.kext /System/Library/Extensions/ZGHSUSBCDCACMData.kext
+
+echo "Resetting root password (you'll need to enter a new password)..."
+passwd
+EOF
+
+echo "Exiting root. Remaining settings are user-specific."
 
 open "https://github.com/login"
 read -p "Please sign into GitHub before running this. Press enter to continue." _
@@ -9,18 +31,24 @@ echo "Adding git identity information..."
 git config --global user.name "ErikBoesen"
 git config --global user.email me@erikboesen.com
 
+echo "Installing gpg..."
+brew install gpg
+echo "Installing Keybase..."
+curl "https://prerelease.keybase.io/Keybase.dmg" --output /tmp/Keybase.dmg
+hdiutil mount "/tmp/Keybase.dmg"
+mv "/Volumes/Keybase/Keybase.app" "$HOME/Documents/Keybase.app"
+hdiutil unmount "/Volumes/Keybase"
+open "$HOME/Documents/Keybase.app"
+
 echo "Please login to Keybase:"
 keybase login
 
-echo "Installing gpg..."
-brew install gpg
 
 keybase pgp export | gpg --import
 keybase pgp export --secret | gpg --allow-secret-key-import --import
 
-gpg --list-secret-keys
-
-read -p "Right above, there should be a line reading 'sec   4096R/######## [Date]'. Please copy and paste the ########: " signingkey
+# TODO: Figure out how to actually use sed and fix this laziness
+signingkey=`gpg --list-secret-keys | grep 4096R | sed "s/sec   4096R\///" | awk '{print $1}'`
 
 echo "Editing git config to enable signing..."
 git config --global user.signingkey $signingkey
@@ -36,15 +64,15 @@ git config --global alias.commit "commit -S"
 
 echo "Keybase git commit signing setup complete!"
 
+echo "Installing wget..."
+brew install wget
+
 echo "Installing Source Code Pro font... (font book will open and need you to click install)"
 # TODO: Download latest release automatically.
-curl -LOk "https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip"
-unzip "1.050R-it.zip"
-open "source-code-pro-2.030R-ro-1.050R-it/OTF/*"
-
-echo "Creating temporary setup-files directory..."
-mkdir -p "$HOME/Desktop/setup-files"
-cd "$HOME/Desktop/setup-files"
+rm -rf /tmp/source-code* /tmp/1.05*
+curl -Lk "https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip" --output /tmp/
+unzip "/tmp/1.050R-it.zip"
+open "/tmp/source-code-pro-2.030R-ro-1.050R-it/OTF/*"
 
 echo "Preparing to install oh-my-zsh, you'll need to enter your user password."
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -60,10 +88,11 @@ echo "Opening Unsplash page with a search for 'parrot' so you can find a desktop
 open "https://unsplash.com/search/parrot"
 
 echo "Installing your zsh config from gist..."
-curl "https://gist.github.com/ErikBoesen/c5d3d575c8f1b592b473f9b128ef3d7c/raw/" > "$HOME/.zshrc"
+# For some reason this doesn't work when using cURL. We installed wget above, so we can just use that I guess.
+wget -quiet "https://gist.github.com/ErikBoesen/c5d3d575c8f1b592b473f9b128ef3d7c/raw/" -O "$HOME/.zshrc"
 
 echo "Installing erkbsn zsh theme..."
-curl "https://raw.githubusercontent.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme" > "$HOME/.oh-my-zsh/themes/erkbsn.zsh-theme"
+wget -quiet "https://raw.githubusercontent.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme" -O "$HOME/.oh-my-zsh/themes/erkbsn.zsh-theme"
 
 
 echo "Done with configuration! Beginning independent installs."
@@ -83,8 +112,12 @@ unzip "atom-mac.zip"
 mv "Atom.app" "$HOME/Documents/Atom.app"
 open "$HOME/Documents/Atom.app"
 
-echo "Installing atom packages..."
-apm install atom-beautify linter linter-pylama merge-conflicts language-common-lisp
+count=`ls -1 $HOME/.atom/packages 2>/dev/null | wc -l`
+if (( $count <= 1 )); then
+    echo "Installing atom packages..."
+    echo "(This often takes a while. Be patient.)"
+    apm install atom-beautify linter linter-pylama merge-conflicts language-common-lisp
+fi
 
 echo "Installing Google Chrome..."
 curl -O "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg"
@@ -106,22 +139,22 @@ open "https://slack.com/downloads/osx"
 
 echo "Downloading and starting Spotify installer..."
 curl -LOk "https://download.scdn.co/SpotifyInstaller.zip"
-unzip "SpotifyInstaller.zip"
+unzip "SpotifyInstaller.zip" > /dev/null
 open "Spotify Installer.app" # TODO: Does this work?
 
-echo "Installing Discord (Standard)..."
-curl -O "https://discordapp.com/api/download?platform=osx"
-hdiutil mount "Discord.dmg"
-mv -R "/Volumes/Discord.app/Discord.app" "$HOME/Documents/Discord.app"
-hdiutil unmount "/Volumes/Discord"
-open "$HOME/Documents/Discord.app"
+#echo "Installing Discord (Standard)..."
+#curl -O "https://discordapp.com/api/download?platform=osx"
+#hdiutil mount "Discord.dmg"
+#mv -R "/Volumes/Discord.app/Discord.app" "$HOME/Documents/Discord.app"
+#hdiutil unmount "/Volumes/Discord"
+#open "$HOME/Documents/Discord.app"
 
-echo "Installing Discord (Canary)..."
-curl -O "https://discordapp.com/api/download/canary?platform=osx"
-hdiutil mount "Discord Canary.dmg"
-mv "/Volumes/Discord/Discord Canary.app" "$HOME/Documents/Discord Canary.app"
-hdiutil unmount "/Volumes/Discord"
-open "$HOME/Documents/Discord Canary.app"
+#echo "Installing Discord (Canary)..."
+#curl -O "https://discordapp.com/api/download/canary?platform=osx"
+#hdiutil mount "Discord Canary.dmg"
+#mv "/Volumes/Discord/Discord Canary.app" "$HOME/Documents/Discord Canary.app"
+#hdiutil unmount "/Volumes/Discord"
+#open "$HOME/Documents/Discord Canary.app"
 
 echo "Installing terminal settings..."
 cp ~/Google\ Drive/Fun/com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
@@ -129,26 +162,11 @@ cp ~/Google\ Drive/Fun/com.apple.Terminal.plist ~/Library/Preferences/com.apple.
 echo "Cloning ErikBoesen/bin..."
 git clone https://github.com/ErikBoesen/macbin ~/bin
 
-echo "Installing drv, shrt, trs, frc (command line tools)..."
-git clone https://github.com/ErikBoesen/drv
-git clone https://github.com/ErikBoesen/shrt
-git clone https://github.com/ErikBoesen/trs
-git clone https://github.com/ErikBoesen/frc
-cp drv/drv.py /usr/local/bin/drv
-cp shrt/shrt.py /usr/local/bin/shrt
-cp trs/trs.bash /usr/local/bin/trs
-go build frc/frc.go
-cp frc/frc /usr/local/bin/frc
-
 echo "Last step: running brew upgrade to upgrade Python3 and everything else. Will probably take a bit."
-brew upgrade
+echo "(Install silenced.)"
+brew upgrade > /dev/null
 
-read -p "Done! Remove ~/Desktop/setup-files directory? " -n 1 -r
-echo
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    rm -rf "$HOME/Desktop/setup-files"
-fi
-
+echo "We're done!"
 echo "Remember to remove toolbar items and FIX SPACES SETTINGS!"
 
 
