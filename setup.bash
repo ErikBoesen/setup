@@ -126,13 +126,6 @@ mv "/Volumes/Google Chrome/Google Chrome.app" "$HOME/Documents/Google Chrome.app
 hdiutil unmount "/Volumes/Google Chrome"
 open "$HOME/Documents/Google Chrome.app"
 
-echo "Installing Google Drive..."
-curl -O "https://dl.google.com/drive/installgoogledrive.dmg"
-hdiutil mount "installgoogledrive.dmg"
-mv "/Volumes/Google Drive/Google Drive.app" "$HOME/Documents/Google Drive.app"
-hdiutil unmount "/Volumes/Google Drive"
-open "$HOME/Documents/Google Drive.app"
-
 echo "Opening Slack downloads page."
 # Slack's download URL contains a version, so just open it for now.
 open "https://slack.com/downloads/osx"
@@ -155,9 +148,6 @@ open "Spotify Installer.app" # TODO: Does this work?
 #mv "/Volumes/Discord/Discord Canary.app" "$HOME/Documents/Discord Canary.app"
 #hdiutil unmount "/Volumes/Discord"
 #open "$HOME/Documents/Discord Canary.app"
-
-echo "Installing terminal settings..."
-cp ~/Google\ Drive/Fun/com.apple.Terminal.plist ~/Library/Preferences/com.apple.Terminal.plist
 
 echo "Cloning ErikBoesen/bin..."
 git clone https://github.com/ErikBoesen/macbin ~/bin
