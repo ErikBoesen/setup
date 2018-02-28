@@ -27,16 +27,20 @@ git clone -q https://github.com/ErikBoesen/.files ~/.files
 echo "Bootstrapping dotfiles..."
 ~/.files/bootstrap.sh
 
-echo "Installing Keybase (bg)..."
-curl "https://prerelease.keybase.io/Keybase.dmg" --output /tmp/Keybase.dmg
-hdiutil mount "/tmp/Keybase.dmg"
-cp -r "/Volumes/Keybase/Keybase.app" "$HOME/Documents/Keybase.app"
-hdiutil unmount "/Volumes/Keybase"
-open "$HOME/Documents/Keybase.app"
+if keybase --version >/dev/null; then
+    echo "Keybase is already installed!"
+else
+    echo "Installing Keybase (bg)..."
+    curl "https://prerelease.keybase.io/Keybase.dmg" --output /tmp/Keybase.dmg
+    hdiutil mount "/tmp/Keybase.dmg"
+    cp -r "/Volumes/Keybase/Keybase.app" "$HOME/Documents/Keybase.app"
+    hdiutil unmount "/Volumes/Keybase"
+    open "$HOME/Documents/Keybase.app"
+fi
 
-wait
 echo "Please login to Keybase:"
 keybase login
+wait
 
 keybase pgp export | gpg --import
 keybase pgp export --secret | gpg --allow-secret-key-import --import
