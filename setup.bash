@@ -47,9 +47,6 @@ keybase pgp export --secret | gpg --allow-secret-key-import --import
 
 echo "Keybase git commit signing setup complete!"
 
-echo "Installing wget..."
-brew install wget
-
 echo "Installing Source Code Pro font... (font book will open and need you to click install)"
 # TODO: Download latest release automatically.
 rm -rf /tmp/source-code* /tmp/1.05*
