@@ -2,8 +2,11 @@
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 
+read -p "Have you run the root script?" _
+read -p "Have you installed Homebrew?" _
+
 open "https://github.com/login"
-read -p "Please sign into GitHub before running this. Press enter to continue." _
+read -p "Please sign into GitHub before running. Press enter to continue." _
 
 echo "Adding git identity information..."
 git config --global user.name "ErikBoesen"

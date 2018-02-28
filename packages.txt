@@ -1,3 +1,4 @@
+gpg
 python3
 wget
 go

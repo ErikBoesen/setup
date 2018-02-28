@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# TODO: Install Homebrew automatically
 echo "Making boesene owner of /usr/local (for Homebrew and Golang)..."
 chown -R boesene /usr/local
 echo "Removing Adobe products (take a lot of data)..."
