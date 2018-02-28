@@ -25,10 +25,6 @@ git clone -q https://github.com/ErikBoesen/.files ~/.files
 echo "Bootstrapping dotfiles..."
 ~/.files/bootstrap.sh
 
-echo "Adding git identity information..."
-git config --global user.name "ErikBoesen"
-git config --global user.email me@erikboesen.com
-
 echo "Installing gpg..."
 brew install gpg
 echo "Installing Keybase..."
@@ -44,21 +40,6 @@ keybase login
 
 keybase pgp export | gpg --import
 keybase pgp export --secret | gpg --allow-secret-key-import --import
-
-# TODO: Figure out how to actually use sed and fix this laziness
-signingkey=`gpg --list-secret-keys | grep 4096R | sed "s/sec   4096R\///" | awk '{print $1}'`
-
-echo "Editing git config to enable signing..."
-git config --global user.signingkey $signingkey
-git config --global commit.gpgsign true
-
-echo "Adding commit -S alias to always sign commits..."
-git config --global alias.commit "commit -S"
-
-# I've already done this; if someone else is using this they'll need this code.
-#keybase pgp export | pbcopy
-#read -p "You're now going to need to add a key to GitHub. The key has been copied to your clipboard. Press enter when ready and click 'New GPG key' then paste." _
-#open "https://github.com/settings/keys"
 
 echo "Keybase git commit signing setup complete!"
 
@@ -84,10 +65,6 @@ nano "$HOME/.ssh/config"
 
 echo "Opening Unsplash page with a search for 'parrot' so you can find a desktop background."
 open "https://unsplash.com/search/parrot"
-
-echo "Installing your zsh config from gist..."
-# For some reason this doesn't work when using cURL. We installed wget above, so we can just use that I guess.
-wget -quiet "https://gist.github.com/ErikBoesen/c5d3d575c8f1b592b473f9b128ef3d7c/raw/" -O "$HOME/.zshrc"
 
 echo "Installing erkbsn zsh theme..."
 wget -quiet "https://raw.githubusercontent.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme" -O "$HOME/.oh-my-zsh/themes/erkbsn.zsh-theme"
@@ -149,7 +126,7 @@ open "Spotify Installer.app" # TODO: Does this work?
 
 echo "Last step: running brew upgrade to upgrade Python3 and everything else. Will probably take a bit."
 echo "(Install silenced.)"
-brew upgrade > /dev/null
+brew upgrade
 
 echo "We're done!"
 echo "Remember to remove toolbar items and FIX SPACES SETTINGS!"
