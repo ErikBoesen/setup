@@ -106,22 +106,8 @@ open "https://slack.com/downloads/osx"
 
 echo "Downloading and starting Spotify installer..."
 curl -LOk "https://download.scdn.co/SpotifyInstaller.zip"
-unzip "SpotifyInstaller.zip" > /dev/null
-open "Spotify Installer.app" # TODO: Does this work?
-
-#echo "Installing Discord (Standard)..."
-#curl -O "https://discordapp.com/api/download?platform=osx"
-#hdiutil mount "Discord.dmg"
-#mv -R "/Volumes/Discord.app/Discord.app" "$HOME/Documents/Discord.app"
-#hdiutil unmount "/Volumes/Discord"
-#open "$HOME/Documents/Discord.app"
-
-#echo "Installing Discord (Canary)..."
-#curl -O "https://discordapp.com/api/download/canary?platform=osx"
-#hdiutil mount "Discord Canary.dmg"
-#mv "/Volumes/Discord/Discord Canary.app" "$HOME/Documents/Discord Canary.app"
-#hdiutil unmount "/Volumes/Discord"
-#open "$HOME/Documents/Discord Canary.app"
+unzip "SpotifyInstaller.zip"
+open "Install Spotify.app"
 
 echo "Last step: running brew upgrade to upgrade Python3 and everything else. Will probably take a bit."
 echo "(Install silenced.)"
