@@ -49,10 +49,10 @@ echo "Keybase git commit signing setup complete!"
 
 echo "Installing Source Code Pro font... (font book will open and need you to click install)"
 # TODO: Download latest release automatically.
-rm -rf /tmp/source-code* /tmp/1.05*
-curl -Lk "https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip" --output /tmp/
+(rm -rf /tmp/source-code* /tmp/1.05*
+curl -Lks "https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip" --output /tmp/
 unzip "/tmp/1.050R-it.zip"
-open "/tmp/source-code-pro-2.030R-ro-1.050R-it/OTF/*"
+open "/tmp/source-code-pro-2.030R-ro-1.050R-it/OTF/*") &
 
 echo "Preparing to install oh-my-zsh, you'll need to enter your user password."
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -77,28 +77,26 @@ echo "Opening GIMP download page..."
 # TODO: Auto-download
 open "https://www.gimp.org/downloads/"
 
-echo "Installing golang..."
-brew install golang
+echo "Making \$GOPATH..."
 mkdir -p /usr/local/go
-export GOPATH=/usr/local/go
 
 echo "Installing Atom..."
-curl -O "https://atom.io/download/mac"
+(curl -Lo /tmp/atom-mac.zip "https://atom.io/download/mac"
 unzip "atom-mac.zip"
 mv "Atom.app" "$HOME/Documents/Atom.app"
-open "$HOME/Documents/Atom.app"
+open "$HOME/Documents/Atom.app")
 
 count=`ls -1 $HOME/.atom/packages 2>/dev/null | wc -l`
 if (( $count <= 1 )); then
     echo "Installing atom packages..."
-    echo "(This often takes a while. Be patient.)"
+    echo "(This often takes a while.)"
     apm install atom-beautify linter linter-pylama merge-conflicts language-common-lisp
 fi
 
 echo "Installing Google Chrome..."
 curl -O "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg"
 hdiutil mount "googlechrome.dmg"
-mv "/Volumes/Google Chrome/Google Chrome.app" "$HOME/Documents/Google Chrome.app"
+cp -r "/Volumes/Google Chrome/Google Chrome.app" "$HOME/Documents/Google Chrome.app"
 hdiutil unmount "/Volumes/Google Chrome"
 open "$HOME/Documents/Google Chrome.app"
 
