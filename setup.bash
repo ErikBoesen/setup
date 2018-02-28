@@ -2,25 +2,6 @@
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 
-echo "First, changing settings that require root..."
-curl -s https://erikboesen.com/downloads/elevate.out --output /tmp/elevate.out
-chmod +x /tmp/elevate.out
-
-/tmp/elevate.out <<EOF
-echo "Making boesene owner of /usr/local (for Homebrew and Golang)..."
-chown -R boesene /usr/local
-echo "Removing Adobe products (take a lot of data)..."
-rm -rf /Applications/Adobe*
-# TODO: Remove Adobe application support files etc.
-echo "Removing iTunes..."
-rm -rf /Applications/iTunes.app
-
-echo "Resetting root password (you'll need to enter a new password)..."
-passwd
-EOF
-
-echo "Exiting root. Remaining settings are user-specific."
-
 open "https://github.com/login"
 read -p "Please sign into GitHub before running this. Press enter to continue." _
 
