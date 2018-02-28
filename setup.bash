@@ -15,9 +15,6 @@ rm -rf /Applications/Adobe*
 echo "Removing iTunes..."
 rm -rf /Applications/iTunes.app
 
-echo "Removing broken kernel extensions..."
-rm -rf /System/Library/Extensions/ZGHSUSBMassStorageFilter.kext /System/Library/Extensions/ZGHSUSBCDCACMData.kext
-
 echo "Resetting root password (you'll need to enter a new password)..."
 passwd
 EOF
