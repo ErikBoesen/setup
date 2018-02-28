@@ -16,6 +16,15 @@ read -p "Have you installed Homebrew?" _
 open "https://github.com/login"
 read -p "Please sign into GitHub before running. Press enter to continue." _
 
+
+echo "Cloning bin..."
+git clone -q https://github.com/ErikBoesen/macbin ~/.bin
+echo "Cloning dotfiles..."
+git clone -q https://github.com/ErikBoesen/.files ~/.files
+
+echo "Bootstrapping dotfiles..."
+~/.files/bootstrap.sh
+
 echo "Adding git identity information..."
 git config --global user.name "ErikBoesen"
 git config --global user.email me@erikboesen.com
@@ -137,9 +146,6 @@ open "Spotify Installer.app" # TODO: Does this work?
 #mv "/Volumes/Discord/Discord Canary.app" "$HOME/Documents/Discord Canary.app"
 #hdiutil unmount "/Volumes/Discord"
 #open "$HOME/Documents/Discord Canary.app"
-
-echo "Cloning ErikBoesen/bin..."
-git clone https://github.com/ErikBoesen/macbin ~/bin
 
 echo "Last step: running brew upgrade to upgrade Python3 and everything else. Will probably take a bit."
 echo "(Install silenced.)"
