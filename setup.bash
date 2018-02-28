@@ -27,18 +27,16 @@ git clone -q https://github.com/ErikBoesen/.files ~/.files
 echo "Bootstrapping dotfiles..."
 ~/.files/bootstrap.sh
 
-echo "Installing gpg..."
-brew install gpg
-echo "Installing Keybase..."
+echo "Installing Keybase (bg)..."
 curl "https://prerelease.keybase.io/Keybase.dmg" --output /tmp/Keybase.dmg
 hdiutil mount "/tmp/Keybase.dmg"
-mv "/Volumes/Keybase/Keybase.app" "$HOME/Documents/Keybase.app"
+cp -r "/Volumes/Keybase/Keybase.app" "$HOME/Documents/Keybase.app"
 hdiutil unmount "/Volumes/Keybase"
 open "$HOME/Documents/Keybase.app"
 
+wait
 echo "Please login to Keybase:"
 keybase login
-
 
 keybase pgp export | gpg --import
 keybase pgp export --secret | gpg --allow-secret-key-import --import
