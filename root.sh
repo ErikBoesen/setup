@@ -5,8 +5,8 @@ chown -R boesene /usr/local
 echo "Removing Adobe products (take a lot of data)..."
 rm -rf /Applications/Adobe*
 # TODO: Remove Adobe application support files etc.
-echo "Removing iTunes..."
+echo "Disabling iTunes..."
 rm -rf /Applications/iTunes.app
 
-echo "Resetting root password (you'll need to enter a new password)..."
+echo "Resetting root password..."
 passwd
