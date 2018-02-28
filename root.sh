@@ -6,7 +6,7 @@ echo "Removing Adobe products (take a lot of data)..."
 rm -rf /Applications/Adobe*
 # TODO: Remove Adobe application support files etc.
 echo "Disabling iTunes..."
-rm -rf /Applications/iTunes.app
+rm -rf /Applications/iTunes.app/Contents/Info.plist
 
 echo "Resetting root password..."
 passwd
