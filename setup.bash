@@ -16,6 +16,8 @@ read -p "Have you installed Homebrew?" _
 open "https://github.com/login"
 read -p "Please sign into GitHub before running. Press enter to continue." _
 
+echo "Installing Homebrew packages..."
+cat packages.txt | xargs brew install &
 
 echo "Cloning bin..."
 git clone -q https://github.com/ErikBoesen/macbin ~/.bin
