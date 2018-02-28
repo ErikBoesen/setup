@@ -18,6 +18,8 @@ read -p "Please sign into GitHub before running. Press enter to continue." _
 
 echo "Installing Homebrew packages..."
 cat packages.txt | xargs brew install &
+echo "Updating Homebrew packages (bg)..."
+brew update >/dev/null &
 
 echo "Cloning bin..."
 git clone -q https://github.com/ErikBoesen/macbin ~/.bin
@@ -108,10 +110,6 @@ echo "Downloading and starting Spotify installer..."
 curl -LOk "https://download.scdn.co/SpotifyInstaller.zip"
 unzip "SpotifyInstaller.zip"
 open "Install Spotify.app"
-
-echo "Last step: running brew upgrade to upgrade Python3 and everything else. Will probably take a bit."
-echo "(Install silenced.)"
-brew upgrade
 
 echo "We're done!"
 echo "Remember to remove toolbar items and FIX SPACES SETTINGS!"
