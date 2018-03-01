@@ -2,13 +2,13 @@
 
 function install_dmg {
     # Parameters:
-    #   install_dmg (App name) (Download URL) (DMG filename)
+    #   install_dmg 1(App name) 2(Download URL) 3(DMG filename)
     echo "Installing $1..."
-    curl -O "$2"
-    hdiutil mount "$3"
-    cp -r "/Volumes/$1/$1.app" "$HOME/Documents/$1.app"
-    hdiutil unmount "/Volumes/$1"
-    open "$HOME/Documents/$1.app"
+    curl -O $2
+    hdiutil mount $3
+    cp -r /Volumes/$1/*.app $HOME/Documents/
+    hdiutil unmount /Volumes/$1
+    open $HOME/Documents/$1.app
 }
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
