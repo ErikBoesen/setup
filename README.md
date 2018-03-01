@@ -6,5 +6,5 @@ Please note that this code is relatively messy!
 ## Package lists
 You can update the list of Atom packages to install with the following command:
 ```bash
-apm list --installed --bare | cut -d '@' -f 1 > packages_apm.txt
+apm list --installed --bare | cut -d '@' -f 1 > res/packages_apm.txt
 ```
