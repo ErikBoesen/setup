@@ -93,10 +93,12 @@ unzip "atom-mac.zip"
 mv "Atom.app" "$HOME/Documents/Atom.app"
 open "$HOME/Documents/Atom.app")
 
-if (( $(apm list --installed | wc -l ) <= 1 )); then
-    echo "Installing Atom packages (bg)..."
-    apm install --packages-file packages_apm.txt &
-fi
+echo "Installing Atom packages (bg)..."
+while read package; do
+    if [[ ! -d "$HOME/.atom/packages/$package" ]]; then
+        apm install $package &
+    fi
+done < packages_apm.txt
 
 install_dmg "Google Chrome" "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg" "googlechrome.dmg"
 
