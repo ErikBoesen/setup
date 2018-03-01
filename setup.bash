@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+
 function install_dmg {
     # Parameters:
     #   install_dmg 1(App name) 2(Download URL) 3(DMG filename)
@@ -11,8 +13,6 @@ function install_dmg {
     rm /tmp/$3
     open $HOME/Documents/$1.app
 }
-
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 
 if xcode-select --version > /dev/null; then
     echo "XCode developer tools are installed!"
