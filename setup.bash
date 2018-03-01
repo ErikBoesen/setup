@@ -14,6 +14,16 @@ function install_dmg {
     open $HOME/Documents/$1.app
 }
 
+function install_zip {
+    # Parameters:
+    #   install_zip 1(App name) 2(Download URL) 3(ZIP filename)
+    echo "Installing $1..."
+    curl -Lo /tmp/$3 $2
+    unzip /tmp/$3
+    mv $1.app $HOME/Documents/$1.app
+    open $HOME/Documents/$1.app
+}
+
 if xcode-select --version > /dev/null; then
     echo "XCode developer tools are installed!"
 else
