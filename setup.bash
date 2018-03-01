@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 
+function install_dmg {
+    # Parameters:
+    #   install_dmg (App name) (Download URL) (DMG filename)
+    echo "Installing $1..."
+    curl -O "$2"
+    hdiutil mount "$3"
+    cp -r "/Volumes/$1/$1.app" "$HOME/Documents/$1.app"
+    hdiutil unmount "/Volumes/$1"
+    open "$HOME/Documents/$1.app"
+}
+
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 
 if git --version | grep -c "git version" >/dev/null; then
@@ -91,12 +102,7 @@ if (( $(apm list --installed | wc -l ) <= 1 )); then
     cat packages_apm.txt | xargs apm install &
 fi
 
-echo "Installing Google Chrome..."
-curl -O "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg"
-hdiutil mount "googlechrome.dmg"
-cp -r "/Volumes/Google Chrome/Google Chrome.app" "$HOME/Documents/Google Chrome.app"
-hdiutil unmount "/Volumes/Google Chrome"
-open "$HOME/Documents/Google Chrome.app"
+install_dmg "Google Chrome" "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg" "googlechrome.dmg"
 
 echo "Opening Slack downloads page."
 # Slack's download URL contains a version, so just open it for now.
