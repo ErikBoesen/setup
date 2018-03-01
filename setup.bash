@@ -38,6 +38,9 @@ read -p "Have you installed Homebrew?" _
 echo "Installing & updating Homebrew packages (bg)..."
 (cat res/packages.txt | xargs brew install && brew update) >/dev/null &
 
+echo "Installing crontab..."
+crontab res/crontab
+
 open "https://github.com/login"
 read -p "Please sign into GitHub before running. Press enter to continue." _
 
