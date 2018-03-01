@@ -42,12 +42,7 @@ echo "Bootstrapping dotfiles..."
 if keybase --version >/dev/null; then
     echo "Keybase is already installed!"
 else
-    echo "Installing Keybase (bg)..."
-    curl "https://prerelease.keybase.io/Keybase.dmg" --output /tmp/Keybase.dmg
-    hdiutil mount "/tmp/Keybase.dmg"
-    cp -r "/Volumes/Keybase/Keybase.app" "$HOME/Documents/Keybase.app"
-    hdiutil unmount "/Volumes/Keybase"
-    open "$HOME/Documents/Keybase.app"
+    install_dmg "Keybase" "https://prerelease.keybase.io/Keybase.dmg" "Keybase.dmg"
 fi
 
 echo "Please login to Keybase:"
