@@ -13,3 +13,6 @@ You may similarly generate a list of Homebrew packages:
 ```bash
 brew list > res/packages_brew.txt
 ```
+
+## License
+This software was created by [Erik Boesen](https://github.com/ErikBoesen) and is provided under the [MIT License](LICENSE).
