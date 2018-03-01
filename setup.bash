@@ -97,11 +97,7 @@ open "https://www.gimp.org/downloads/"
 echo "Making \$GOPATH..."
 mkdir -p /usr/local/go
 
-echo "Installing Atom..."
-(curl -Lo /tmp/atom-mac.zip "https://atom.io/download/mac"
-unzip "atom-mac.zip"
-mv "Atom.app" "$HOME/Documents/Atom.app"
-open "$HOME/Documents/Atom.app")
+install_zip "Atom" "https://atom.io/download/mac" "atom-mac.zip"
 
 echo "Installing Atom packages (bg)..."
 while read package; do
