@@ -14,7 +14,7 @@ function install_dmg {
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 
-if git --version | grep -c "git version" >/dev/null; then
+if xcode-select --version > /dev/null; then
     echo "XCode developer tools are installed!"
 else
     echo "XCode developer tools must be installed!"
