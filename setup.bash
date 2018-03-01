@@ -4,10 +4,11 @@ function install_dmg {
     # Parameters:
     #   install_dmg 1(App name) 2(Download URL) 3(DMG filename)
     echo "Installing $1..."
-    curl -O $2
-    hdiutil mount $3
+    curl -o /tmp/$3 $2
+    hdiutil mount /tmp/$3
     cp -r /Volumes/$1/*.app $HOME/Documents/
     hdiutil unmount /Volumes/$1
+    rm /tmp/$3
     open $HOME/Documents/$1.app
 }
 
