@@ -36,7 +36,7 @@ read -p "Have you run the root script?" _
 read -p "Have you installed Homebrew?" _
 
 echo "Installing & updating Homebrew packages (bg)..."
-(cat packages.txt | xargs brew install && brew update) >/dev/null &
+(cat res/packages.txt | xargs brew install && brew update) >/dev/null &
 
 open "https://github.com/login"
 read -p "Please sign into GitHub before running. Press enter to continue." _
@@ -104,7 +104,7 @@ while read package; do
     if [[ ! -d "$HOME/.atom/packages/$package" ]]; then
         apm install $package &
     fi
-done < packages_apm.txt
+done < res/packages_apm.txt
 
 install_dmg "Google Chrome" "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg" "googlechrome.dmg"
 
