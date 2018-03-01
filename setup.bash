@@ -3,7 +3,7 @@
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 
 if git --version | grep -c "git version" >/dev/null; then
-    echo "XCode developer tools have been installed!"
+    echo "XCode developer tools are installed!"
 else
     echo "XCode developer tools must be installed!"
     xcode-select --install
@@ -13,13 +13,11 @@ fi
 read -p "Have you run the root script?" _
 read -p "Have you installed Homebrew?" _
 
+echo "Installing & updating Homebrew packages (bg)..."
+(cat packages.txt | xargs brew install && brew update) >/dev/null &
+
 open "https://github.com/login"
 read -p "Please sign into GitHub before running. Press enter to continue." _
-
-echo "Installing Homebrew packages..."
-cat packages.txt | xargs brew install &
-echo "Updating Homebrew packages (bg)..."
-brew update >/dev/null &
 
 echo "Cloning bin..."
 git clone -q https://github.com/ErikBoesen/macbin ~/.bin &
