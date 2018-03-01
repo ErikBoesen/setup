@@ -95,7 +95,7 @@ open "$HOME/Documents/Atom.app")
 
 if (( $(apm list --installed | wc -l ) <= 1 )); then
     echo "Installing Atom packages (bg)..."
-    cat packages_apm.txt | xargs apm install &
+    apm install --packages-file packages_apm.txt &
 fi
 
 install_dmg "Google Chrome" "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg" "googlechrome.dmg"
