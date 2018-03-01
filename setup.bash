@@ -89,9 +89,8 @@ mv "Atom.app" "$HOME/Documents/Atom.app"
 open "$HOME/Documents/Atom.app")
 
 if (( $(apm list --installed | wc -l ) <= 1 )); then
-    echo "Installing atom packages..."
-    echo "(This often takes a while.)"
-    apm install atom-beautify linter linter-pylama merge-conflicts language-common-lisp
+    echo "Installing Atom packages (bg)..."
+    cat packages_apm.txt | xargs apm install &
 fi
 
 echo "Installing Google Chrome..."
