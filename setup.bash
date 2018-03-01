@@ -22,12 +22,12 @@ echo "Updating Homebrew packages (bg)..."
 brew update >/dev/null &
 
 echo "Cloning bin..."
-git clone -q https://github.com/ErikBoesen/macbin ~/.bin
-echo "Cloning dotfiles..."
+git clone -q https://github.com/ErikBoesen/macbin ~/.bin &
+(echo "Cloning dotfiles..."
 git clone -q https://github.com/ErikBoesen/.files ~/.files
 
 echo "Bootstrapping dotfiles..."
-~/.files/bootstrap.sh
+~/.files/bootstrap.sh) &
 
 if keybase --version >/dev/null; then
     echo "Keybase is already installed!"
