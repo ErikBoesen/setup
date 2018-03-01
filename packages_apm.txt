@@ -1,0 +1,7 @@
+atom-beautify
+atom-material-ui
+color-picker
+linter
+linter-pylama
+merge-conflicts
+victis-syntax
