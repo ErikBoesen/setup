@@ -88,7 +88,7 @@ unzip "atom-mac.zip"
 mv "Atom.app" "$HOME/Documents/Atom.app"
 open "$HOME/Documents/Atom.app")
 
-count=`ls -1 $HOME/.atom/packages 2>/dev/null | wc -l`
+count=$(ls -1 $HOME/.atom/packages 2>/dev/null | wc -l)
 if (( $count <= 1 )); then
     echo "Installing atom packages..."
     echo "(This often takes a while.)"
