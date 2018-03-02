@@ -117,10 +117,7 @@ echo "Opening Slack downloads page."
 # Slack's download URL contains a version, so just open it for now.
 open "https://slack.com/downloads/osx"
 
-echo "Downloading and starting Spotify installer..."
-curl -LOk "https://download.scdn.co/SpotifyInstaller.zip"
-unzip "SpotifyInstaller.zip"
-open "Install Spotify.app"
+install_zip "Install Spotify" "https://download.scdn.co/SpotifyInstaller.zip" "SpotifyInstaller.zip"
 
 wait
 echo "We're done!"
