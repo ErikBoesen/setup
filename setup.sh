@@ -42,7 +42,10 @@ else
     exit 1
 fi
 
-read -p "Have you run the root script?" _
+if [ "$(stat -f '%u' /usr)" = 0 ]; then
+    echo "You must run root.sh first!"
+fi
+
 read -p "Have you installed Homebrew?" _
 
 echo "Installing & updating Homebrew packages (bg)..."
