@@ -76,7 +76,7 @@ curl -Lks "https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.05
 unzip "/tmp/1.050R-it.zip"
 open "/tmp/source-code-pro-2.030R-ro-1.050R-it/OTF/*") &
 
-echo "Preparing to install oh-my-zsh, you'll need to enter your user password."
+echo "Installing oh-my-zsh..."
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 echo "You're going to need to set up your SSH config. Since it's private we can't curl it, but we'll open it and then you can paste it."
@@ -90,7 +90,7 @@ echo "Opening Unsplash page with a search for 'parrot' so you can find a desktop
 open "https://unsplash.com/search/parrot"
 
 echo "Installing erkbsn zsh theme..."
-wget -quiet "https://raw.githubusercontent.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme" -O "$HOME/.oh-my-zsh/themes/erkbsn.zsh-theme"
+curl -o $HOME/.oh-my-zsh/themes/erkbsn.zsh-theme "https://raw.githubusercontent.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme"
 
 
 echo "Done with configuration! Beginning independent installs."
