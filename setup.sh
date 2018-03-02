@@ -43,10 +43,14 @@ else
 fi
 
 if [ "$(stat -f '%u' /usr)" = 0 ]; then
-    echo "You must run root.sh first!"
+    echo "You must run root.sh (as root) first!"
+    exit 1
 fi
 
-read -p "Have you installed Homebrew?" _
+if ! brew --version >/dev/null; then
+    echo "Homebrew not installed!"
+    exit 1
+fi
 
 echo "Installing & updating Homebrew packages (bg)..."
 (cat res/packages.txt | xargs brew install && brew update) >/dev/null &
