@@ -7,6 +7,10 @@ app_target="$HOME/Applications"
 function install_dmg {
     # Parameters:
     #   install_dmg 1(App name) 2(Download URL) 3(DMG filename)
+    if [ -d "$app_target/$1.app" ]; then
+        echo "$1 is already installed."
+        return
+    fi
     echo "Installing $1..."
     curl -o /tmp/$3 $2
     hdiutil mount /tmp/$3
@@ -19,10 +23,14 @@ function install_dmg {
 function install_zip {
     # Parameters:
     #   install_zip 1(App name) 2(Download URL) 3(ZIP filename)
+    if [ -d "$app_target/$1.app" ]; then
+        echo "$1 is already installed."
+        return
+    fi
     echo "Installing $1..."
     curl -Lo /tmp/$3 $2
-    unzip -q /tmp/$3 -d /tmp
-    mv /tmp/$1.app $app_target/$1.app
+    unzip -q /tmp/$3 -d /tmp/
+    mv /tmp/$1.app $app_target/
     open $app_target/$1.app
 }
 
