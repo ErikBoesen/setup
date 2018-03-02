@@ -62,11 +62,7 @@ git clone -q https://github.com/ErikBoesen/.files ~/.files
 echo "Bootstrapping dotfiles..."
 ~/.files/bootstrap.sh) &
 
-if keybase --version >/dev/null; then
-    echo "Keybase is already installed!"
-else
-    install_dmg "Keybase" "https://prerelease.keybase.io/Keybase.dmg" "Keybase.dmg"
-fi
+install_dmg "Keybase" "https://prerelease.keybase.io/Keybase.dmg" "Keybase.dmg"
 
 echo "Please login to Keybase:"
 keybase login
