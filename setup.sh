@@ -122,6 +122,7 @@ curl -LOk "https://download.scdn.co/SpotifyInstaller.zip"
 unzip "SpotifyInstaller.zip"
 open "Install Spotify.app"
 
+wait
 echo "We're done!"
 echo "Remember to remove toolbar items and FIX SPACES SETTINGS!"
 
