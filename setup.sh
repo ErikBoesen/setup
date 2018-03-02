@@ -112,11 +112,6 @@ while read package; do
 done < res/packages_apm.txt
 
 install_dmg "Google Chrome" "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg" "googlechrome.dmg"
-
-echo "Opening Slack downloads page."
-# Slack's download URL contains a version, so just open it for now.
-open "https://slack.com/downloads/osx"
-
 install_zip "Install Spotify" "https://download.scdn.co/SpotifyInstaller.zip" "SpotifyInstaller.zip"
 
 wait
