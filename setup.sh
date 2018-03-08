@@ -53,7 +53,7 @@ if ! brew --version >/dev/null; then
 fi
 
 echo "Installing & updating Homebrew packages (bg)..."
-(cat res/packages.txt | xargs brew install && brew update) >/dev/null &
+(cat res/packages_brew.txt | xargs brew install && brew update) >/dev/null &
 
 echo "Installing crontab..."
 crontab res/crontab
