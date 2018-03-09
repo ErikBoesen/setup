@@ -90,13 +90,6 @@ open "/tmp/source-code-pro-2.030R-ro-1.050R-it/OTF/*") &
 echo "Installing oh-my-zsh..."
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-echo "You're going to need to set up your SSH config. Since it's private we can't curl it, but we'll open it and then you can paste it."
-# TODO: Figure out some way to download this automatically.
-mkdir -p "$HOME/.ssh"
-sleep 1s
-open "https://gist.github.com/ErikBoesen/3e796aa1772f7c99fcdd54e8d12ae188/raw/"
-nano "$HOME/.ssh/config"
-
 echo "Opening Unsplash page with a search for 'parrot' so you can find a desktop background."
 open "https://unsplash.com/search/parrot"
 
