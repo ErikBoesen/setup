@@ -120,9 +120,13 @@ install_zip "Install Spotify" "https://download.scdn.co/SpotifyInstaller.zip" "S
 
 echo "Recreating source directory from backup..."
 echo "Copying from server..."
-scp juno:"dump-*/src.tar" /tmp/ &&
+scp juno:"dump-*/{src.tar,repos.txt}" /tmp/ &&
 echo "Extracting..." &&
 tar -xkf /tmp/src.tar -C ~/src
+
+while read repo; do
+    git clone "$repo" ~/src/$repo
+done < /tmp/repos.txt
 
 wait
 echo "We're done!"
