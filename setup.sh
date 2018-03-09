@@ -118,6 +118,12 @@ done < res/packages_apm.txt
 install_dmg "Google Chrome" "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg" "googlechrome.dmg"
 install_zip "Install Spotify" "https://download.scdn.co/SpotifyInstaller.zip" "SpotifyInstaller.zip"
 
+echo "Recreating source directory from backup..."
+echo "Copying from server..."
+scp juno:"dump-*/src.tar" /tmp/ &&
+echo "Extracting..." &&
+tar -xkf /tmp/src.tar -C ~/src
+
 wait
 echo "We're done!"
 echo "Remember to remove toolbar items and FIX SPACES SETTINGS!"
