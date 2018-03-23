@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 # TODO: Install Homebrew automatically
+
+echo "Changing PATH (commands like chown aren't there by default)..."
+export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 echo "Making boesene owner of /usr/local (for Homebrew and Golang)..."
 chown -R boesene /usr/local
 echo "Removing Adobe products (take a lot of data)..."
