@@ -14,5 +14,9 @@ rm -rf /Applications/iTunes.app/Contents/Info.plist
 echo "Disabling inconvenient Chrome restrictions..."
 plutil -remove DeveloperToolsDisabled /Library/Managed\ Preferences/com.google.Chrome.plist
 plutil -remove IncognitoModeAvailability /Library/Managed\ Preferences/com.google.Chrome.plist
+echo "Enabling SSH..."
+systemsetup -setremotelogin on >/dev/null
+echo "Opening SSH to all users..."
+dscl . change /Groups/com.apple.access_ssh RecordName com.apple.access_ssh com.apple.access_ssh-disabled >/dev/null
 echo "Resetting root password..."
 passwd
