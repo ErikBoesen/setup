@@ -4,16 +4,21 @@
 
 echo "Changing PATH (commands like chown aren't there by default)..."
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+
 echo "Making boesene owner of /usr/local (for Homebrew and Golang)..."
 chown -R boesene /usr/local
+
 echo "Removing Adobe products (take a lot of data)..."
 rm -rf /Applications/Adobe*
 # TODO: Remove Adobe application support files etc.
+
 echo "Disabling iTunes..."
 rm -rf /Applications/iTunes.app/Contents/Info.plist
+
 echo "Disabling inconvenient Chrome restrictions..."
 plutil -remove DeveloperToolsDisabled /Library/Managed\ Preferences/com.google.Chrome.plist
 plutil -remove IncognitoModeAvailability /Library/Managed\ Preferences/com.google.Chrome.plist
+
 echo "Enabling SSH..."
 systemsetup -setremotelogin on >/dev/null
 echo "Opening SSH to all users..."
