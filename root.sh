@@ -13,7 +13,7 @@ rm -rf /Applications/Adobe*
 # TODO: Remove Adobe application support files etc.
 
 echo "Disabling iTunes..."
-rm -rf /Applications/iTunes.app/Contents/Info.plist
+rm -f /Applications/iTunes.app/Contents/Info.plist
 
 echo "Disabling inconvenient Chrome restrictions..."
 plutil -remove DeveloperToolsDisabled /Library/Managed\ Preferences/com.google.Chrome.plist
