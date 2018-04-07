@@ -94,8 +94,7 @@ echo "Opening Unsplash page with a search for 'parrot' so you can find a desktop
 open "https://unsplash.com/search/parrot"
 
 echo "Installing erkbsn zsh theme..."
-curl -o $HOME/.oh-my-zsh/themes/erkbsn.zsh-theme "https://raw.githubusercontent.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme"
-
+curl -Lo $HOME/.oh-my-zsh/themes/erkbsn.zsh-theme "https://raw.github.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme"
 
 echo "Done with configuration! Beginning independent installs."
 
