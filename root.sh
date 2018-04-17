@@ -11,6 +11,10 @@ chown -R boesene /usr/local
 echo "Disabling iTunes..."
 rm -f /Applications/iTunes.app/Contents/Info.plist
 
+echo "Running clean script..."
+git clone https://github.com/ErikBoesen/clean /tmp/clean
+/tmp/clean/clean.sh
+
 echo "Disabling inconvenient Chrome restrictions..."
 plutil -remove DeveloperToolsDisabled /Library/Managed\ Preferences/com.google.Chrome.plist
 plutil -remove IncognitoModeAvailability /Library/Managed\ Preferences/com.google.Chrome.plist
