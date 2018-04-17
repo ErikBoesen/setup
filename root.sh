@@ -8,10 +8,6 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 echo "Making boesene owner of /usr/local (for Homebrew and Golang)..."
 chown -R boesene /usr/local
 
-echo "Removing Adobe products (take a lot of data)..."
-rm -rf /Applications/Adobe*
-# TODO: Remove Adobe application support files etc.
-
 echo "Disabling iTunes..."
 rm -f /Applications/iTunes.app/Contents/Info.plist
 
