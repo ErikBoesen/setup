@@ -127,9 +127,11 @@ while read repo; do
     git clone "$repo" ~/src/$repo
 done < /tmp/repos.txt
 
+echo "Showing hidden files..."
+defaults write com.apple.finder AppleShowAllFiles YES
+
 wait
 echo "We're done!"
 echo "Remember to remove toolbar items and FIX SPACES SETTINGS!"
-
 
 # TODO: remove toolbar items, fix spaces settings
