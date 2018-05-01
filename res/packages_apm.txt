@@ -5,3 +5,4 @@ linter
 linter-pylama
 merge-conflicts
 victis-syntax
+atom-latex
