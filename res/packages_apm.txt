@@ -6,3 +6,4 @@ linter-pylama
 merge-conflicts
 victis-syntax
 atom-latex
+language-tex
