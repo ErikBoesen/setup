@@ -98,6 +98,10 @@ curl -Lo $HOME/.oh-my-zsh/themes/erkbsn.zsh-theme "https://raw.github.com/ErikBo
 
 echo "Done with configuration! Beginning independent installs."
 
+echo "Making unlocked System Preferences app..."
+cp -r /Applications/System\ Preferences.app ~/Applications
+rm ~/Applications/System\ Preferences.app/Contents/Resources/NSPrefPaneGroups.xml
+
 echo "Opening GIMP download page..."
 # TODO: Auto-download
 open "https://www.gimp.org/downloads/"
