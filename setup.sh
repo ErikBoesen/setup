@@ -141,4 +141,4 @@ wait
 echo "We're done!"
 echo "Remember to remove toolbar items and FIX SPACES SETTINGS!"
 
-# TODO: remove toolbar items, fix spaces settings
+# TODO: remove toolbar items
