@@ -138,7 +138,4 @@ echo "Showing hidden files..."
 defaults write com.apple.finder AppleShowAllFiles YES
 
 wait
-echo "We're done!"
-echo "Remember to remove toolbar items and FIX SPACES SETTINGS!"
-
-# TODO: remove toolbar items
+echo "Done!"
