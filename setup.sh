@@ -102,8 +102,8 @@ curl -Lo $HOME/.oh-my-zsh/themes/erkbsn.zsh-theme "https://raw.github.com/ErikBo
 echo "Done with configuration! Beginning independent installs."
 
 echo "Making unlocked System Preferences app..."
-cp -r /Applications/System\ Preferences.app ~/Applications
-rm ~/Applications/System\ Preferences.app/Contents/Resources/NSPrefPaneGroups.xml
+cp -r /Applications/System\ Preferences.app $app_target
+rm $app_target/System\ Preferences.app/Contents/Resources/NSPrefPaneGroups.xml
 
 echo "Installing GIMP with Homebrew..."
 brew cask install --appdir=$app_target
