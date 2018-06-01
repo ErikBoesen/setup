@@ -105,9 +105,11 @@ echo "Making unlocked System Preferences app..."
 cp -r /Applications/System\ Preferences.app ~/Applications
 rm ~/Applications/System\ Preferences.app/Contents/Resources/NSPrefPaneGroups.xml
 
-echo "Opening GIMP download page..."
-# TODO: Auto-download
-open "https://www.gimp.org/downloads/"
+echo "Installing GIMP with Homebrew..."
+brew cask install --appdir=$app_target
+#echo "Opening GIMP download page..."
+## TODO: Auto-download
+#open "https://www.gimp.org/downloads/"
 
 echo "Making \$GOPATH..."
 mkdir -p /usr/local/go
