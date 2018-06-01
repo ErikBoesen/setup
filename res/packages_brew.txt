@@ -1,5 +1,4 @@
 gpg
-gimp
 python3
 wget
 go
