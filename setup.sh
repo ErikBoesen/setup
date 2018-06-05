@@ -139,5 +139,8 @@ done < /tmp/repos.txt
 echo "Showing hidden files..."
 defaults write com.apple.finder AppleShowAllFiles YES
 
+echo "Showing all file extensions..."
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
 wait
 echo "Done!"
