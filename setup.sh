@@ -101,6 +101,13 @@ defaults write com.apple.dock mru-spaces -bool false
 echo "Disable opening Photos on plug..."
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
+echo "Changing graphics settings for speed..."
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+defaults write -g QLPanelAnimationDuration -float 0
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+defaults write com.apple.finder DisableAllAnimations -bool true
+defaults write com.apple.dock launchanim -bool false
+
 echo "Installing erkbsn zsh theme..."
 curl -Lo $HOME/.oh-my-zsh/themes/erkbsn.zsh-theme "https://raw.github.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme"
 
