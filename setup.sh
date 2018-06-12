@@ -96,6 +96,9 @@ open "https://unsplash.com/search/parrot"
 echo "Disabling space rearranging based on recent use..."
 defaults write com.apple.dock mru-spaces -bool false
 
+echo "Disable opening Photos on plug..."
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
+
 echo "Installing erkbsn zsh theme..."
 curl -Lo $HOME/.oh-my-zsh/themes/erkbsn.zsh-theme "https://raw.github.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme"
 
