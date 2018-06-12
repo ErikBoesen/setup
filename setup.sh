@@ -117,11 +117,16 @@ defaults write com.apple.dashboard mcx-disabled -bool TRUE
 
 echo "Removing Launchpad animations.."
 # TODO: Totally disable Launchpad
+# https://www.defaults-write.com/disable-launchpad-fade-effects/
 defaults write com.apple.dock springboard-show-duration -int 0
 defaults write com.apple.dock springboard-hide-duration -int 0
 
 echo "Showing full POSIX path in Finder header..."
+# https://www.defaults-write.com/display-full-posix-path-in-os-x-finder-title-bar/
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
+echo "Disabling two-finger swipe in Chrome..."
+defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool FALSE
 
 echo "Installing erkbsn zsh theme..."
 curl -Lo $HOME/.oh-my-zsh/themes/erkbsn.zsh-theme "https://raw.github.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme"
