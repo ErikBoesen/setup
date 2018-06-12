@@ -2,6 +2,8 @@
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 
+start=$(date +%s)
+
 app_target="$HOME/Applications"
 
 function install_dmg {
@@ -147,3 +149,6 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 wait
 echo "Done!"
+
+end=$(date +%s)
+osascript -e "display notification \"Finished in $((end-start))s.\" with title \"Setup complete\!\" sound name \"\""
