@@ -111,7 +111,7 @@ cp -r /Applications/System\ Preferences.app $app_target
 rm $app_target/System\ Preferences.app/Contents/Resources/NSPrefPaneGroups.xml
 
 echo "Installing GIMP with Homebrew..."
-brew cask install --appdir=$app_target
+brew cask install gimp --appdir=$app_target
 #echo "Opening GIMP download page..."
 ## TODO: Auto-download
 #open "https://www.gimp.org/downloads/"
