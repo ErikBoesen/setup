@@ -108,6 +108,10 @@ defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 defaults write com.apple.finder DisableAllAnimations -bool true
 defaults write com.apple.dock launchanim -bool false
 
+echo "Disabling mission control and spaces..."
+# https://www.defaults-write.com/mac-os-x-disable-mission-control-and-spaces/
+defaults write com.apple.dock mcx-expose-disabled -bool TRUE
+
 echo "Installing erkbsn zsh theme..."
 curl -Lo $HOME/.oh-my-zsh/themes/erkbsn.zsh-theme "https://raw.github.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme"
 
