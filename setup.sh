@@ -126,7 +126,11 @@ echo "Showing full POSIX path in Finder header..."
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
 echo "Disabling two-finger swipe in Chrome..."
+# https://www.defaults-write.com/disable-the-two-finger-swipe-gesture-in-chrome/
 defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool FALSE
+
+echo "Disabling .DS_Store files..."
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 
 echo "Installing erkbsn zsh theme..."
 curl -Lo $HOME/.oh-my-zsh/themes/erkbsn.zsh-theme "https://raw.github.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme"
