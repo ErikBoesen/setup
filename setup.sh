@@ -120,6 +120,9 @@ echo "Removing Launchpad animations.."
 defaults write com.apple.dock springboard-show-duration -int 0
 defaults write com.apple.dock springboard-hide-duration -int 0
 
+echo "Showing full POSIX path in Finder header..."
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+
 echo "Installing erkbsn zsh theme..."
 curl -Lo $HOME/.oh-my-zsh/themes/erkbsn.zsh-theme "https://raw.github.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme"
 
