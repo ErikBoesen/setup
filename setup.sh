@@ -102,15 +102,18 @@ echo "Disable opening Photos on plug..."
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
 echo "Changing graphics settings for speed..."
+# https://www.defaults-write.com/10-terminal-commands-to-speed-up-macos-sierra-on-your-mac/
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 defaults write -g QLPanelAnimationDuration -float 0
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 defaults write com.apple.finder DisableAllAnimations -bool true
-defaults write com.apple.dock launchanim -bool false
 
 echo "Disabling mission control and spaces..."
 # https://www.defaults-write.com/mac-os-x-disable-mission-control-and-spaces/
 defaults write com.apple.dock mcx-expose-disabled -bool TRUE
+
+echo "Disabling Dashboard..."
+defaults write com.apple.dashboard mcx-disabled -boolean YES
 
 echo "Installing erkbsn zsh theme..."
 curl -Lo $HOME/.oh-my-zsh/themes/erkbsn.zsh-theme "https://raw.github.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme"
