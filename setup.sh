@@ -113,7 +113,12 @@ echo "Disabling mission control and spaces..."
 defaults write com.apple.dock mcx-expose-disabled -bool TRUE
 
 echo "Disabling Dashboard..."
-defaults write com.apple.dashboard mcx-disabled -boolean YES
+defaults write com.apple.dashboard mcx-disabled -bool TRUE
+
+echo "Removing Launchpad animations.."
+# TODO: Totally disable Launchpad
+defaults write com.apple.dock springboard-show-duration -int 0
+defaults write com.apple.dock springboard-hide-duration -int 0
 
 echo "Installing erkbsn zsh theme..."
 curl -Lo $HOME/.oh-my-zsh/themes/erkbsn.zsh-theme "https://raw.github.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme"
