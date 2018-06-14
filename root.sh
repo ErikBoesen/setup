@@ -16,6 +16,11 @@ rm -f /Library/Managed\ Preferences/com.google.Chrome.plist \
       /Library/Managed\ Preferences/*/com.google.Chrome.plist \
       /Library/Managed\ Preferences/*/com.apple.systempreferences.plist
 
+echo "Nullifying Managed Preferences entirely..."
+# Heh
+mv /Library/Managed\ Preferences /tmp
+ln -s /dev/null /Library/Managed\ Preferences
+
 echo "Running clean script..."
 git clone https://github.com/ErikBoesen/clean /tmp/clean
 /tmp/clean/clean.sh
