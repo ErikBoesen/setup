@@ -13,7 +13,8 @@ rm -f /Applications/iTunes.app/Contents/Info.plist
 
 echo "Removing inconvenient managed preferences..."
 rm -f /Library/Managed\ Preferences/com.google.Chrome.plist \
-      /Library/Managed\ Preferences/*/com.google.Chrome.plist
+      /Library/Managed\ Preferences/*/com.google.Chrome.plist \
+      /Library/Managed\ Preferences/*/com.apple.systempreferences.plist
 
 echo "Running clean script..."
 git clone https://github.com/ErikBoesen/clean /tmp/clean
