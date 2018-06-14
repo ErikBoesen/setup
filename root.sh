@@ -11,6 +11,10 @@ chown -R boesene /usr/local
 echo "Disabling iTunes..."
 rm -f /Applications/iTunes.app/Contents/Info.plist
 
+echo "Removing inconvenient managed preferences..."
+rm -f /Library/Managed\ Preferences/com.google.Chrome.plist \
+      /Library/Managed\ Preferences/*/com.google.Chrome.plist
+
 echo "Running clean script..."
 git clone https://github.com/ErikBoesen/clean /tmp/clean
 /tmp/clean/clean.sh
