@@ -114,7 +114,7 @@ defaults write com.apple.finder DisableAllAnimations -bool true
 
 task "Disabling mission control and spaces"
 # https://www.defaults-write.com/mac-os-x-disable-mission-control-and-spaces/
-defaults write com.apple.dock mcx-expose-disabled -bool TRUE
+#defaults write com.apple.dock mcx-expose-disabled -bool TRUE
 
 task "Disabling Dashboard"
 defaults write com.apple.dashboard mcx-disabled -bool TRUE
