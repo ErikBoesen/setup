@@ -99,6 +99,9 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 echo "Opening Unsplash page with a search for 'parrot' so you can find a desktop background."
 open "https://unsplash.com/search/parrot"
 
+task "Showing battery percentage"
+defaults write com.apple.menuextra.battery ShowPercent -bool true
+
 task "Disabling space rearranging based on recent use"
 defaults write com.apple.dock mru-spaces -bool false
 
