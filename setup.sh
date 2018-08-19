@@ -148,6 +148,11 @@ task "Making unlocked System Preferences app"
 cp -r /Applications/System\ Preferences.app $app_target
 rm $app_target/System\ Preferences.app/Contents/Resources/NSPrefPaneGroups.xml
 
+task "Installing Vundle"
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+task "Installing tpm"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 task "Installing GIMP with Homebrew"
 brew cask install gimp --appdir=$app_target
 #task "Opening GIMP download page"
