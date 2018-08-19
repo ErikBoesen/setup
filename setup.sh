@@ -86,12 +86,15 @@ keybase pgp export --secret | gpg --allow-secret-key-import --import
 
 echo "Keybase git commit signing setup complete!"
 
-echo "Installing Source Code Pro font... (font book will open and need you to click install)"
+task "Installing Source Code Pro font"
+brew tap caskroom/fonts && brew cask install font-source-code-pro
+
+#echo "Installing Source Code Pro font... (font book will open and need you to click install)"
 # TODO: Download latest release automatically.
-(rm -rf /tmp/source-code* /tmp/1.05*
-curl -Lks "https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip" --output /tmp/
-unzip "/tmp/1.050R-it.zip"
-open "/tmp/source-code-pro-2.030R-ro-1.050R-it/OTF/*") &
+#(rm -rf /tmp/source-code* /tmp/1.05*
+#curl -Lks "https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip" --output /tmp/
+#unzip "/tmp/1.050R-it.zip"
+#open "/tmp/source-code-pro-2.030R-ro-1.050R-it/OTF/*") &
 
 task "Installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
