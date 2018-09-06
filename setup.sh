@@ -75,7 +75,8 @@ git clone -q https://github.com/ErikBoesen/.files ~/.files
 task "Bootstrapping dotfiles"
 ~/.files/bootstrap.sh) &
 
-install_dmg "Keybase" "https://prerelease.keybase.io/Keybase.dmg" "Keybase.dmg"
+brew tap homebrew/cask-versions  # For Nightly
+brew cask install firefox-nightly keybase
 
 wait
 echo "Please login to Keybase:"
