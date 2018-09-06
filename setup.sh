@@ -82,7 +82,7 @@ echo "Please login to Keybase:"
 keybase login
 
 keybase pgp export | gpg --import
-keybase pgp export --secret | gpg --allow-secret-key-import --import
+keybase pgp export --secret --unencrypted | gpg --allow-secret-key-import --import
 
 echo "Keybase git commit signing setup complete!"
 
