@@ -145,14 +145,16 @@ task "Installing tpm"
 mkdir -p $HOME/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-task "Installing GIMP with Homebrew"
+task "Installing GIMP"
 brew cask install gimp --appdir=$app_target
 
 task "Making \$GOPATH"
 mkdir -p /usr/local/go
 
-install_dmg "Google Chrome" "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg" "googlechrome.dmg"
-install_zip "Install Spotify" "https://download.scdn.co/SpotifyInstaller.zip" "SpotifyInstaller.zip"
+task "Installing Chrome"
+brew cask install google-chrome --appdir=$app_target
+task "Installing Spotify"
+brew cask install spotify --appdir=$app_target
 
 task "Recreating source directory from backup"
 task "Copying from server"
