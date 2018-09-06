@@ -142,6 +142,7 @@ rm $app_target/System\ Preferences.app/Contents/Resources/NSPrefPaneGroups.xml
 task "Installing Vundle"
 mkdir -p $HOME/.vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall
 task "Installing tpm"
 mkdir -p $HOME/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
