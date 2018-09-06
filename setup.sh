@@ -89,13 +89,6 @@ echo "Keybase git commit signing setup complete!"
 task "Installing Source Code Pro font"
 brew tap caskroom/fonts && brew cask install font-source-code-pro
 
-#echo "Installing Source Code Pro font... (font book will open and need you to click install)"
-# TODO: Download latest release automatically.
-#(rm -rf /tmp/source-code* /tmp/1.05*
-#curl -Lks "https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip" --output /tmp/
-#unzip "/tmp/1.050R-it.zip"
-#open "/tmp/source-code-pro-2.030R-ro-1.050R-it/OTF/*") &
-
 echo "Opening Unsplash page with a search for 'parrot' so you can find a desktop background."
 open "https://unsplash.com/search/parrot"
 
@@ -154,8 +147,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 task "Installing GIMP with Homebrew"
 brew cask install gimp --appdir=$app_target
-#task "Opening GIMP download page"
-#open "https://www.gimp.org/downloads/"
 
 task "Making \$GOPATH"
 mkdir -p /usr/local/go
