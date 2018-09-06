@@ -96,9 +96,6 @@ brew tap caskroom/fonts && brew cask install font-source-code-pro
 #unzip "/tmp/1.050R-it.zip"
 #open "/tmp/source-code-pro-2.030R-ro-1.050R-it/OTF/*") &
 
-task "Installing oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
 echo "Opening Unsplash page with a search for 'parrot' so you can find a desktop background."
 open "https://unsplash.com/search/parrot"
 
@@ -141,9 +138,6 @@ defaults write com.google.Chrome.plist AppleEnableSwipeNavigateWithScrolls -bool
 
 task "Disabling .DS_Store files"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true
-
-task "Installing erkbsn zsh theme"
-curl -Lo $HOME/.oh-my-zsh/themes/erkbsn.zsh-theme "https://raw.github.com/ErikBoesen/erkbsn/master/erkbsn.zsh-theme"
 
 echo "Done with configuration! Beginning independent installs."
 
