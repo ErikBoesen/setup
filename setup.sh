@@ -76,7 +76,8 @@ task "Bootstrapping dotfiles"
 ~/.files/bootstrap.sh) &
 
 brew tap homebrew/cask-versions  # For Nightly
-brew cask install firefox-nightly keybase
+brew tap caskroom/fonts
+brew cask install font-source-code-pro gimp firefox-nightly keybase google-chrome --appdir=$app_target
 
 wait
 echo "Please login to Keybase:"
@@ -86,9 +87,6 @@ keybase pgp export | gpg --import
 keybase pgp export --secret --unencrypted | gpg --allow-secret-key-import --import
 
 echo "Keybase git commit signing setup complete!"
-
-task "Installing Source Code Pro font"
-brew tap caskroom/fonts && brew cask install font-source-code-pro
 
 echo "Opening Unsplash page with a search for 'parrot' so you can find a desktop background."
 open "https://unsplash.com/search/parrot"
@@ -147,16 +145,8 @@ task "Installing tpm"
 mkdir -p $HOME/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-task "Installing GIMP"
-brew cask install gimp --appdir=$app_target
-
 task "Making \$GOPATH"
 mkdir -p /usr/local/go
-
-task "Installing Chrome"
-brew cask install google-chrome --appdir=$app_target
-task "Installing Spotify"
-brew cask install spotify --appdir=$app_target
 
 task "Recreating source directory from backup"
 task "Copying from server"
