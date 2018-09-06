@@ -77,9 +77,9 @@ task "Bootstrapping dotfiles"
 
 install_dmg "Keybase" "https://prerelease.keybase.io/Keybase.dmg" "Keybase.dmg"
 
+wait
 echo "Please login to Keybase:"
 keybase login
-wait
 
 keybase pgp export | gpg --import
 keybase pgp export --secret | gpg --allow-secret-key-import --import
