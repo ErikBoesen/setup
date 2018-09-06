@@ -40,7 +40,7 @@ function install_zip {
     open $app_target/$1.app
 }
 
-if xcode-select --version > /dev/null; then
+if xcode-select -p &> /dev/null; then
     echo "XCode developer tools are installed!"
 else
     echo "XCode developer tools must be installed!"
