@@ -152,27 +152,19 @@ cp -r /Applications/System\ Preferences.app $app_target
 rm $app_target/System\ Preferences.app/Contents/Resources/NSPrefPaneGroups.xml
 
 task "Installing Vundle"
+mkdir -p $HOME/.vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 task "Installing tpm"
+mkdir -p $HOME/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 task "Installing GIMP with Homebrew"
 brew cask install gimp --appdir=$app_target
 #task "Opening GIMP download page"
-## TODO: Auto-download
 #open "https://www.gimp.org/downloads/"
 
 task "Making \$GOPATH"
 mkdir -p /usr/local/go
-
-install_zip "Atom" "https://atom.io/download/mac" "atom-mac.zip"
-
-task "Installing Atom packages (bg)"
-while read package; do
-    if [[ ! -d "$HOME/.atom/packages/$package" ]]; then
-        apm install $package &
-    fi
-done < res/packages_apm.txt
 
 install_dmg "Google Chrome" "https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg" "googlechrome.dmg"
 install_zip "Install Spotify" "https://download.scdn.co/SpotifyInstaller.zip" "SpotifyInstaller.zip"
