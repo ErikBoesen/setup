@@ -1,8 +1,5 @@
 gpg
-python3
 wget
-go
-neofetch
 nmap
 pv
 vim
