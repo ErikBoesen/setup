@@ -77,7 +77,7 @@ task "Bootstrapping dotfiles"
 
 brew tap homebrew/cask-versions  # For Nightly
 brew tap caskroom/fonts
-brew cask install font-source-code-pro gimp firefox-nightly keybase google-chrome --appdir=$app_target
+brew cask install font-source-code-pro gimp firefox-nightly keybase google-chrome mactex --appdir=$app_target
 
 wait
 echo "Please login to Keybase:"
